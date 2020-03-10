@@ -4,7 +4,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.ParameterizedType;
 
 import io.sslprox.annotations.Request;
+import io.sslprox.requests.LoginRequest;
 import io.sslprox.requests.Req;
+import io.sslprox.responses.LoginResponse;
 import kong.unirest.HttpRequest;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
@@ -62,6 +64,11 @@ public class SSLProxApi {
 				((Class.forName(((ParameterizedType) req.getClass().getGenericSuperclass()).getActualTypeArguments()[0]
 						.toString().split(" ")[1]))));
 		T body = res.getBody();
+		// autosave session
+		if (req instanceof LoginRequest) {
+			LoginResponse lRes = (LoginResponse) body;
+			this.session = lRes.session;
+		}
 		return body;
 
 	}
