@@ -15,5 +15,8 @@ public class CreateProjectRequest extends Req<CreateProjectResponse> {
 		this.name = name;
 		this.description = description;
 	}
+	
+	public CreateProjectRequest() {
+	}
 
 }

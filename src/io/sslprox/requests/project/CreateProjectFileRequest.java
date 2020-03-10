@@ -9,15 +9,20 @@ import io.sslprox.types.ProjectFileType;
 public class CreateProjectFileRequest extends Req<CreateProjectFileResponse> {
 
 	public String publicid;
+	public String path;
 	public String name;
 	public String content;
 	public String type;
 
 	@Request(path = "/project/file", method = Method.POST)
-	public CreateProjectFileRequest(String publicid, String name, ProjectFileType type, String content) {
+	public CreateProjectFileRequest(String publicid, String path, String name, ProjectFileType type, String content) {
 		this.publicid = publicid;
+		this.path = path;
 		this.name = name;
 		this.type = type.name().toLowerCase();
 		this.content = content;
+	}
+	
+	public CreateProjectFileRequest() {
 	}
 }
