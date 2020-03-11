@@ -3,6 +3,8 @@ package io.sslprox.api;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.ParameterizedType;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.sslprox.annotations.Request;
 import io.sslprox.requests.LoginRequest;
 import io.sslprox.requests.Req;
@@ -41,8 +43,6 @@ public class SSLProxApi {
 
 		String url = host + annotation.path();
 
-		System.out.println("send to " + url);
-
 		switch (annotation.method().name().toLowerCase()) {
 		case "post":
 			request = Unirest.post(url).body(req);
@@ -56,14 +56,25 @@ public class SSLProxApi {
 			request = Unirest.get(url);
 			break;
 		default:
-
+			System.out.println("undefined method in SSLProxApi: " + annotation.method());
 			return null;
 		}
 		request = request.header("x-sslprox-session", session);
-		HttpResponse<T> res = (HttpResponse<T>) request.asObject(
-				((Class.forName(((ParameterizedType) req.getClass().getGenericSuperclass()).getActualTypeArguments()[0]
-						.toString().split(" ")[1]))));
-		T body = res.getBody();
+		request.header("Content-Type", "application/json");
+		Class<?> clazz = ((Class
+				.forName(((ParameterizedType) req.getClass().getGenericSuperclass()).getActualTypeArguments()[0]
+						.toString().split(" ")[1])));
+
+		ObjectMapper mapper = new ObjectMapper();
+
+		HttpResponse<String> res = request.asString();
+
+		String bodyStr = res.getBody();
+
+		// System.out.println(bodyStr);
+
+		T body = (T) mapper.readValue(bodyStr, clazz);
+
 		// autosave session
 		if (req instanceof LoginRequest) {
 			LoginResponse lRes = (LoginResponse) body;
@@ -78,7 +89,7 @@ public class SSLProxApi {
 			try {
 				handler.handleResponse(call(req));
 			} catch (Exception e) {
-				handler.handleException(e);
+				e.printStackTrace();
 			}
 		}).start();
 	}

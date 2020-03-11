@@ -14,4 +14,7 @@ public class CreateProjectResponse extends Res {
 		this.msg = msg;
 	}
 
+	public CreateProjectResponse() {
+	}
+
 }

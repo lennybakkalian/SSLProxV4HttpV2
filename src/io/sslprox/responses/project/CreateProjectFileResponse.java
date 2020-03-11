@@ -15,5 +15,8 @@ public class CreateProjectFileResponse extends Res {
 		this.msg = msg;
 		this.createdFile = createdFile;
 	}
+	
+	public CreateProjectFileResponse() {
+	}
 
 }

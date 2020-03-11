@@ -2,7 +2,9 @@ package io.sslprox.responses.project;
 
 import java.util.List;
 
-public class ProjectListResponse {
+import io.sslprox.responses.Res;
+
+public class ProjectListResponse extends Res {
 
 	public List<ProjectResponse> projects;
 
