@@ -52,6 +52,7 @@ public class SSLProxApi {
 			break;
 		case "delete":
 			request = Unirest.delete(url).body(req);
+			break;
 		case "get":
 			request = Unirest.get(url);
 			break;
@@ -71,7 +72,7 @@ public class SSLProxApi {
 
 		String bodyStr = res.getBody();
 
-		// System.out.println(bodyStr);
+		System.out.println(bodyStr);
 
 		T body = (T) mapper.readValue(bodyStr, clazz);
 
