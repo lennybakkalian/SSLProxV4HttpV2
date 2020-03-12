@@ -11,7 +11,7 @@ public class GetProjectFileRequest extends Req<GetProjectFileResponse> {
 	public String path;
 	public String fileid;
 
-	@Request(path = "/project/file", method = Method.GET)
+	@Request(path = "/project/file/view", method = Method.POST)
 	public GetProjectFileRequest(String publicid, String path, String fileid) {
 		this.publicid = publicid;
 		this.path = path;

@@ -72,7 +72,7 @@ public class SSLProxApi {
 
 		String bodyStr = res.getBody();
 
-		System.out.println(bodyStr);
+		//System.out.println(bodyStr);
 
 		T body = (T) mapper.readValue(bodyStr, clazz);
 
