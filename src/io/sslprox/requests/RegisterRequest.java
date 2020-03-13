@@ -16,5 +16,8 @@ public class RegisterRequest extends Req<RegisterResponse> {
 		this.email = email;
 		this.password = password;
 	}
+	
+	public RegisterRequest() {
+	}
 
 }
