@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.sslprox.annotations.Request;
 import io.sslprox.requests.LoginRequest;
 import io.sslprox.requests.Req;
+import io.sslprox.requests.project.GetCurrentUserRequest;
 import io.sslprox.responses.LoginResponse;
+import io.sslprox.responses.UserResponse;
 import kong.unirest.HttpRequest;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
@@ -17,6 +19,7 @@ public class SSLProxApi {
 
 	private String host;
 	private String session;
+	private UserResponse currentUser;
 
 	public SSLProxApi(String host) {
 		this.host = host;
@@ -24,6 +27,16 @@ public class SSLProxApi {
 
 	public void setSession(String session) {
 		this.session = session;
+		try {
+			currentUser = call(new GetCurrentUserRequest());
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("cant get current user - invalid session?");
+		}
+	}
+
+	public UserResponse getCurrentUser() {
+		return currentUser;
 	}
 
 	public String getSession() {
@@ -72,14 +85,14 @@ public class SSLProxApi {
 
 		String bodyStr = res.getBody();
 
-		//System.out.println(bodyStr);
+		// System.out.println(bodyStr);
 
 		T body = (T) mapper.readValue(bodyStr, clazz);
 
 		// autosave session
 		if (req instanceof LoginRequest) {
 			LoginResponse lRes = (LoginResponse) body;
-			this.session = lRes.session;
+			setSession(lRes.session);
 		}
 		return body;
 

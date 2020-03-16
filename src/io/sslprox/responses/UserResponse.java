@@ -1,6 +1,6 @@
 package io.sslprox.responses;
 
-public class UserResponse {
+public class UserResponse extends Res {
 
 	public String username;
 
