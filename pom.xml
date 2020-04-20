@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>SSLProxV4HttpV2</groupId>
 	<artifactId>io.sslprox</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.2</version>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
