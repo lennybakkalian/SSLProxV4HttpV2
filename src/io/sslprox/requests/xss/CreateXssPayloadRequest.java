@@ -13,5 +13,8 @@ public class CreateXssPayloadRequest extends Req<CreateXssPayloadResponse> {
 	public CreateXssPayloadRequest(String name) {
 		this.name = name;
 	}
+	
+	public CreateXssPayloadRequest() {
+	}
 
 }

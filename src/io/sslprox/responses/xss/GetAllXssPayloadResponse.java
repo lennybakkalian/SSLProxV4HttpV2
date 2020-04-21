@@ -4,15 +4,15 @@ import java.util.List;
 
 import io.sslprox.responses.Res;
 
-public class GetAllXssPaylaodResponse extends Res {
+public class GetAllXssPayloadResponse extends Res {
 
 	public List<XssPayloadResponse> payloads;
 
-	public GetAllXssPaylaodResponse(List<XssPayloadResponse> payloads) {
+	public GetAllXssPayloadResponse(List<XssPayloadResponse> payloads) {
 		this.payloads = payloads;
 	}
 
-	public GetAllXssPaylaodResponse() {
+	public GetAllXssPayloadResponse() {
 	}
 
 }

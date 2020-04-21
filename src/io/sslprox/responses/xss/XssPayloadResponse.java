@@ -9,21 +9,14 @@ public class XssPayloadResponse extends Res {
 	public String name, publicid, evalCode;
 	public List<XssPayloadEntryResponse> entries;
 
-	public XssPayloadResponse(String name, String publicid) {
+	public XssPayloadResponse(String name, String publicid, String evalCode) {
 		this.name = name;
 		this.publicid = publicid;
-	}
-
-	public String getEvalCode() {
-		return evalCode;
-	}
-
-	public void setEvalCode(String evalCode) {
 		this.evalCode = evalCode;
 	}
 
-	public XssPayloadResponse(String name, String publicid, List<XssPayloadEntryResponse> entries) {
-		this(name, publicid);
+	public XssPayloadResponse(String name, String publicid, String evalCode, List<XssPayloadEntryResponse> entries) {
+		this(name, publicid, evalCode);
 		this.entries = entries;
 	}
 

@@ -14,4 +14,7 @@ public class XssPayloadRequest extends Req<XssPayloadResponse> {
 		this.publicid = publicid;
 	}
 	
+	public XssPayloadRequest() {
+	}
+	
 }

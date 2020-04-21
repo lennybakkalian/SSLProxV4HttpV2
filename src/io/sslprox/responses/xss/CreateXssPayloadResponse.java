@@ -13,5 +13,8 @@ public class CreateXssPayloadResponse extends Res {
 		this.status = status;
 		this.msg = msg;
 	}
+	
+	public CreateXssPayloadResponse() {
+	}
 
 }
