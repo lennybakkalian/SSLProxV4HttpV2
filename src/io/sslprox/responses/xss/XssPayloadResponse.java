@@ -15,11 +15,6 @@ public class XssPayloadResponse extends Res {
 		this.evalCode = evalCode;
 	}
 
-	public XssPayloadResponse(String name, String publicid, String evalCode, List<XssPayloadEntryResponse> entries) {
-		this(name, publicid, evalCode);
-		this.entries = entries;
-	}
-
 	public XssPayloadResponse() {
 	}
 }
